@@ -1,14 +1,19 @@
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
-import EyeIcon from 'mdi-react/EyeIcon';
-import EmailIcon from 'mdi-react/EmailIcon';
-import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
+import CalendarBlankIcon from 'mdi-react/CalendarBlankIcon';
+import TimetableIcon from 'mdi-react/TimetableIcon';
+// import EyeIcon from 'mdi-react/EyeIcon';
+// import EmailIcon from 'mdi-react/EmailIcon';
+// import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import renderFileInputField from '../../../../shared/components/form/FileInput';
-import renderSelectField from '../../../../shared/components/form/Select';
-import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
+import renderFileInputField from '../../../shared/components/form/FileInput';
+import renderSelectField from '../../../shared/components/form/Select';
+// import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
+import renderRadioButtonField from '../../../shared/components/form/RadioButton';
+import renderDatePickerField from '../../../shared/components/form/DatePicker';
+import renderDateTimePickerField from '../../../shared/components/form/DateTimePicker';
 
 class HorizontalForm extends PureComponent {
   static propTypes = {
@@ -39,144 +44,205 @@ class HorizontalForm extends PureComponent {
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{t('forms.basic_form.horizontal_form')}</h5>
-              <h5 className="subhead">Labels are left from fields</h5>
+              <h5 className="bold-text">{t('Add Guest Data')}</h5>
             </div>
             <form className="form form--horizontal" onSubmit={handleSubmit}>
               <div className="form__form-group">
-                <span className="form__form-group-label">Default Label</span>
+                <span className="form__form-group-label">Guest Id</span>
                 <div className="form__form-group-field">
                   <Field
-                    name="defaultInput"
+                    name="GuestId"
                     component="input"
                     type="text"
-                    placeholder="Default Input"
+                    placeholder="Id"
                   />
                 </div>
               </div>
               <div className="form__form-group">
-                <span className="form__form-group-label">Disabled Field</span>
+                <span className="form__form-group-label">Surname</span>
                 <div className="form__form-group-field">
                   <Field
-                    name="disableInput"
+                    name="Surname"
                     component="input"
                     type="text"
-                    placeholder="Disabled Input"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Given Name</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="GivenName"
+                    component="input"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Sex</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="Sex"
+                    component={renderRadioButtonField}
+                    label="Male"
+                    radioValue="male"
+                  />
+                  <Field
+                    name="Sex"
+                    component={renderRadioButtonField}
+                    label="Female"
+                    radioValue="female"
+                  />
+                  <Field
+                    name="Sex"
+                    component={renderRadioButtonField}
+                    label="Other"
+                    radioValue="other"
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Date of Birth</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="DateOfBirth"
+                    component={renderDatePickerField}
+                  />
+                  <div className="form__form-group-icon">
+                    <CalendarBlankIcon />
+                  </div>
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Nationality</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="Nationality"
+                    component={renderSelectField}
+                    options={[
+                      { value: 'India', label: 'India' },
+                      { value: 'US', label: 'America' },
+                      { value: 'Spain', label: 'Spain' },
+                      { value: 'China', label: 'China' },
+                      { value: 'Japan', label: 'Japan' },
+                      { value: 'UK', label: 'England' },
+                    ]}
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Arrived From</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="ArrivedFrom"
+                    component="input"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Hotel Id</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="hotelId"
+                    component="input"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Hotel Name</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="hotel"
+                    component="input"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Check In Time</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="DateOfArrivalInHotel"
+                    component={renderDateTimePickerField}
+                  />
+                  <div className="form__form-group-icon">
+                    <TimetableIcon />
+                  </div>
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Blacklisted</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="BlackListStatus"
+                    component="input"
+                    type="text"
+                    placeholder="No"
                     disabled
                   />
                 </div>
               </div>
               <div className="form__form-group">
-                <span className="form__form-group-label">E-mail</span>
+                <span className="form__form-group-label">Id Proof</span>
                 <div className="form__form-group-field">
                   <Field
-                    name="email"
-                    component="input"
-                    type="email"
-                    placeholder="example@mail.com"
-                  />
-                </div>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">Password</span>
-                <div className="form__form-group-field">
-                  <Field
-                    name="password"
-                    component="input"
-                    type={this.state.showPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <button
-                    className={`form__form-group-button${this.state.showPassword ? ' active' : ''}`}
-                    onClick={e => this.showPassword(e)}
-                  ><EyeIcon />
-                  </button>
-                </div>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">Icon Left</span>
-                <div className="form__form-group-field">
-                  <div className="form__form-group-icon">
-                    <EmailIcon />
-                  </div>
-                  <Field
-                    name="leftIcon"
-                    component="input"
-                    type="email"
-                    placeholder="Icon Left Input"
-                  />
-                </div>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">Icon Right</span>
-                <div className="form__form-group-field">
-                  <Field
-                    name="rightIcon"
-                    component="input"
-                    type="text"
-                    placeholder="Icon Right Input"
-                  />
-                  <div className="form__form-group-icon">
-                    <AccountSearchIcon />
-                  </div>
-                </div>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">Field with description</span>
-                <div className="form__form-group-field">
-                  <Field
-                    name="descriptionInput"
-                    component="input"
-                    type="text"
-                  />
-                </div>
-                <span className="form__form-group-description">
-                  Zealously now pronounce existence add you instantly say offending.
-                </span>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">Dropdown</span>
-                <div className="form__form-group-field">
-                  <Field
-                    name="select"
+                    name="IdentificationType"
                     component={renderSelectField}
                     options={[
-                      { value: 'one', label: 'One' },
-                      { value: 'two', label: 'Two' },
+                      { value: 'VoterId', label: 'Voter Id' },
+                      { value: 'Aadhar', label: 'Aadhar' },
+                      { value: 'DrivingLicence', label: 'Driving Licence' },
+                      { value: 'Passport', label: 'Passport' },
                     ]}
                   />
                 </div>
               </div>
               <div className="form__form-group">
-                <span className="form__form-group-label">Multiselect</span>
-                <div className="form__form-group-field">
-                  <Field
-                    name="multiSelect"
-                    component={renderMultiSelectField}
-                    options={[
-                      { value: 'one', label: 'One' },
-                      { value: 'two', label: 'Two' },
-                    ]}
-                  />
-                </div>
-              </div>
-              <div className="form__form-group">
-                <div className="form__form-group-field">
-                  <Field
-                    name="textarea"
-                    component="textarea"
-                    type="text"
-                  />
-                </div>
-              </div>
-              <div className="form__form-group">
-                <span className="form__form-group-label">
-                  Add file
-                </span>
+                <span className="form__form-group-label">Upload file</span>
                 <div className="form__form-group-field">
                   <Field
                     name="file"
                     component={renderFileInputField}
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Form C</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="FormC"
+                    component="input"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Verification</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="VerificationStatus"
+                    component="input"
+                    type="text"
+                    placeholder="Pending"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div className="form__form-group">
+                <span className="form__form-group-label">Remarks</span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="Remarks"
+                    component="textarea"
+                    type="text"
                   />
                 </div>
               </div>

@@ -4,13 +4,15 @@ import Layout from '../Layout/index';
 import MainWrapper from './MainWrapper';
 
 import LogIn from '../LogIn/index';
-import ExamplePageOne from '../Example/index';
-import ExamplePageTwo from '../ExampleTwo/index';
+import BasicForm from '../BasicForm/index';
+import DataTable from '../DataTable/index';
+// import ExamplePageOne from '../Example/index';
+// import ExamplePageTwo from '../ExampleTwo/index';
 
 const Pages = () => (
   <Switch>
-    <Route path="/pages/one" component={ExamplePageOne} />
-    <Route path="/pages/two" component={ExamplePageTwo} />
+    <Route path="/pages/form" component={BasicForm} />
+    <Route path="/pages/table" component={DataTable} />
   </Switch>
 );
 
