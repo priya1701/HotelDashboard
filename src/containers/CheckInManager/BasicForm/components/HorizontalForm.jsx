@@ -8,12 +8,12 @@ import TimetableIcon from 'mdi-react/TimetableIcon';
 // import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import renderFileInputField from '../../../shared/components/form/FileInput';
-import renderSelectField from '../../../shared/components/form/Select';
+import renderFileInputField from '../../../../shared/components/form/FileInput';
+import renderSelectField from '../../../../shared/components/form/Select';
 // import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
-import renderRadioButtonField from '../../../shared/components/form/RadioButton';
-import renderDatePickerField from '../../../shared/components/form/DatePicker';
-import renderDateTimePickerField from '../../../shared/components/form/DateTimePicker';
+import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
+import renderDatePickerField from '../../../../shared/components/form/DatePicker';
+import renderDateTimePickerField from '../../../../shared/components/form/DateTimePicker';
 
 class HorizontalForm extends PureComponent {
   static propTypes = {

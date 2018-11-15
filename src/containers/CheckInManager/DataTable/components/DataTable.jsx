@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unused-state,react/no-unescaped-entities */
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { Field } from 'redux-form';
-import EditTable from '../../../shared/components/table/EditableTable';
-import Pagination from '../../../shared/components/pagination/Pagination';
+// import { Field } from 'redux-form';
+import EditTable from '../../../../shared/components/table/EditableTable';
+import Pagination from '../../../../shared/components/pagination/Pagination';
 
 export default class DataTable extends PureComponent {
   constructor() {
@@ -92,9 +92,6 @@ export default class DataTable extends PureComponent {
             </div>
             <div className="form__form-group">
               <span className="form__form-group-label">Guest Id</span>
-              <div className="form__form-group-field">
-                
-              </div>
             </div>
             <p>Show
               <select className="select-options">

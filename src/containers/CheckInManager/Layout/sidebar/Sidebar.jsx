@@ -3,7 +3,7 @@ import Scrollbar from 'react-smooth-scrollbar';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import SidebarContent from './SidebarContent';
-import { SidebarProps } from '../../../shared/prop-types/ReducerProps';
+import { SidebarProps } from '../../../../shared/prop-types/ReducerProps';
 
 const Sidebar = ({
   changeToDark, changeToLight, changeMobileSidebarVisibility, sidebar,

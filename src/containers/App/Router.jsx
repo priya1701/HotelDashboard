@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Layout from '../Layout/index';
+import Layout from '../CheckInManager/Layout/index';
 import MainWrapper from './MainWrapper';
 
 import LogIn from '../LogIn/index';
-import BasicForm from '../BasicForm/index';
-import DataTable from '../DataTable/index';
+import BasicForm from '../CheckInManager/BasicForm/index';
+import DataTable from '../CheckInManager/DataTable/index';
 // import ExamplePageOne from '../Example/index';
 // import ExamplePageTwo from '../ExampleTwo/index';
 
