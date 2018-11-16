@@ -1,19 +1,11 @@
 /* eslint-disable react/no-unused-state,react/no-unescaped-entities */
 import React, { PureComponent } from 'react';
-import { Container, Card, CardBody, Col, Row, Button, ButtonToolbar } from 'reactstrap';
-import { Field } from 'redux-form';
-import PropTypes from 'prop-types';
+import { Card, CardBody, Col } from 'reactstrap';
 // import { Field } from 'redux-form';
 import EditTable from '../../../../shared/components/table/EditableTable';
 import Pagination from '../../../../shared/components/pagination/Pagination';
-import renderSelectField from '../../../../shared/components/form/Select';
 
 export default class DataTable extends PureComponent {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired,
-  };
-
   constructor() {
     super();
     this.heads = [
@@ -90,63 +82,30 @@ export default class DataTable extends PureComponent {
   };
 
   render() {
-    const { handleSubmit, reset } = this.props;
-
     return (
-      <Container>
-        <Row>
-          <form className="form form--horizontal" onSubmit={handleSubmit}>
-            <div className="form__form-group">
-              <span className="form__form-group-label">Nationality</span>
-              <div className="form__form-group-field">
-                <Field
-                  name="Nationality"
-                  component={renderSelectField}
-                  options={[
-                    { value: 'India', label: 'India' },
-                    { value: 'US', label: 'America' },
-                    { value: 'Spain', label: 'Spain' },
-                    { value: 'China', label: 'China' },
-                    { value: 'Japan', label: 'Japan' },
-                    { value: 'UK', label: 'England' },
-                  ]}
-                />
-              </div>
+      <Col md={12} lg={12}>
+        <Card>
+          <CardBody>
+            <div className="card__title">
+              <h5 className="bold-text">Data Table</h5>
+              <h5 className="subhead">Use table with column's option <span className="red-text">sortable</span></h5>
             </div>
-            <ButtonToolbar className="form__button-toolbar">
-              <Button color="primary" type="submit">Submit</Button>
-              <Button type="button" onClick={reset}>
-                Cancel
-              </Button>
-            </ButtonToolbar>
-          </form>
-        </Row>
-        <Row>
-          <Col md={12} lg={12}>
-            <Card>
-              <CardBody>
-                <div className="card__title">
-                  <h5 className="bold-text">Data Table</h5>
-                  <h5 className="subhead">Use table with column's option <span className="red-text">sortable</span></h5>
-                </div>
-                <div className="form__form-group">
-                  <span className="form__form-group-label">Guest</span>
-                </div>
-                <p>Show
-                  <select className="select-options">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                  </select>
-                  entries
-                </p>
-                <EditTable heads={this.heads} rows={this.state.rows} />
-                <Pagination items={this.state.rows} onChangePage={this.onChangePage} />
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+            <div className="form__form-group">
+              <span className="form__form-group-label">Guest</span>
+            </div>
+            <p>Show
+              <select className="select-options">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+              entries
+            </p>
+            <EditTable heads={this.heads} rows={this.state.rows} />
+            <Pagination items={this.state.rows} onChangePage={this.onChangePage} />
+          </CardBody>
+        </Card>
+      </Col>
     );
   }
 }

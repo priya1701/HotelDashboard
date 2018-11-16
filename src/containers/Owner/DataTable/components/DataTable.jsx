@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unused-state,react/no-unescaped-entities */
 import React, { PureComponent } from 'react';
 import { Container, Card, CardBody, Col, Row, Button, ButtonToolbar } from 'reactstrap';
-import { Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 // import { Field } from 'redux-form';
 import EditTable from '../../../../shared/components/table/EditableTable';
 import Pagination from '../../../../shared/components/pagination/Pagination';
 import renderSelectField from '../../../../shared/components/form/Select';
 
-export default class DataTable extends PureComponent {
+class DataTable extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
@@ -150,3 +150,7 @@ export default class DataTable extends PureComponent {
     );
   }
 }
+
+export default reduxForm({
+  form: 'filter_table_form', // a unique identifier for this form
+})(DataTable);
