@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import Topbar from './topbar/Topbar';
 import Sidebar from './sidebar/Sidebar';
 
-import { changeThemeToDark, changeThemeToLight } from '../../../redux/actions/themeActions';
-import { changeMobileSidebarVisibility, changeSidebarVisibility } from '../../../redux/actions/sidebarActions';
-import { SidebarProps } from '../../../shared/prop-types/ReducerProps';
+import { changeThemeToDark, changeThemeToLight } from '../../redux/actions/themeActions';
+import { changeMobileSidebarVisibility, changeSidebarVisibility } from '../../redux/actions/sidebarActions';
+import { SidebarProps } from '../../shared/prop-types/ReducerProps';
 
 class Layout extends Component {
   static propTypes = {
