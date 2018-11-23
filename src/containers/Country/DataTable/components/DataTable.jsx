@@ -8,7 +8,7 @@ import EditTable from '../../../../shared/components/table/EditableTable';
 import Pagination from '../../../../shared/components/pagination/Pagination';
 import renderSelectField from '../../../../shared/components/form/Select';
 
-export default class DataTable extends PureComponent {
+class DataTable extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
