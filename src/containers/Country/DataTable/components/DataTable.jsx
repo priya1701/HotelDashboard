@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state,react/no-unescaped-entities */
 import React, { PureComponent } from 'react';
 import { Container, Card, CardBody, Col, Row, Button, ButtonToolbar } from 'reactstrap';
-import { Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 // import { Field } from 'redux-form';
 import EditTable from '../../../../shared/components/table/EditableTable';
@@ -184,3 +184,7 @@ export default class DataTable extends PureComponent {
     );
   }
 }
+
+export default reduxForm({
+  form: 'filter_table_form_country', // a unique identifier for this form
+})(DataTable);

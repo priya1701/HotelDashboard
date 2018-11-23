@@ -152,5 +152,5 @@ class DataTable extends PureComponent {
 }
 
 export default reduxForm({
-  form: 'filter_table_form', // a unique identifier for this form
+  form: 'filter_table_form_owner', // a unique identifier for this form
 })(DataTable);

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unused-state,react/no-unescaped-entities */
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
+import axios from 'axios';
 // import { Field } from 'redux-form';
 import EditTable from '../../../../shared/components/table/EditableTable';
 import Pagination from '../../../../shared/components/pagination/Pagination';
@@ -10,75 +11,110 @@ export default class DataTable extends PureComponent {
     super();
     this.heads = [
       {
-        key: 'id',
-        name: '#',
+        key: 'GuestId',
+        name: 'Guest Id',
         width: 80,
       },
       {
-        key: 'first',
-        name: 'First Name',
+        key: 'Surname',
+        name: 'Surname',
         sortable: true,
       },
       {
-        key: 'last',
-        name: 'Last Name',
+        key: 'GivenName',
+        name: 'Given Name',
         sortable: true,
       },
       {
-        key: 'user',
-        name: 'Username',
+        key: 'Sex',
+        name: 'Sex',
+      },
+      {
+        key: 'DateOfBirth',
+        name: 'Date Of Birth',
+      },
+      {
+        key: 'Nationality',
+        name: 'Nationality',
+      },
+      {
+        key: 'ArrivedFrom',
+        name: 'Arrived From',
         sortable: true,
       },
       {
-        key: 'age',
-        name: 'Age',
+        key: 'AddressCurrent',
+        name: 'Address',
+      },
+      {
+        key: 'PermanentMobileNumber',
+        name: 'Mobile No',
+      },
+      {
+        key: 'IdentificationType',
+        name: 'Id proof',
+      },
+      {
+        key: 'DateOfArrivalInHotel',
+        name: 'Check In',
         sortable: true,
       },
       {
-        key: 'date',
-        name: 'Date',
-        sortable: true,
+        key: 'VerificationStatus',
+        name: 'Verified',
       },
       {
-        key: 'location',
-        name: 'Location',
-        sortable: true,
+        key: 'BlackListStatus',
+        name: 'BlackList Status',
       },
       {
-        key: 'work',
-        name: 'Work',
-        sortable: true,
+        key: 'Remarks',
+        name: 'Remarks',
       },
     ];
 
     this.state = {
-      rows: this.createRows(23),
+      Rows: [],
       pageOfItems: [],
     };
   }
 
+  componentDidMount() {
+    axios
+      .get('http://35.247.129.253:3510/api/hotel.cto.Guest')
+      .then((response) => {
+        const rows = response.data.map((c) => {
+          const arr = [
+            c.GuestId,
+            c.Surname,
+            c.GivenName,
+            c.Sex,
+            c.DateOfBirth,
+            c.Nationality,
+            c.ArrivedFrom,
+            c.AddressCurrent,
+            c.PermanentMobileNumber,
+            c.IdentificationType,
+            c.DateOfArrivalInHotel,
+            c.VerificationStatus,
+            c.BlackListStatus,
+            c.Remarks,
+          ];
+          return arr;
+        });
+        // create a new "state" object without mutating
+        // the original state object.
+        const newState = Object.assign({}, {
+          Rows: rows,
+        });
+        // store the new state object in the component's state
+        this.setState({ Rows: newState.Rows });
+      })
+      .catch(error => console.log(error));
+  }
+
   onChangePage = (pageOfItems) => {
     this.setState({ pageOfItems });
-  };
-
-  getRandomDate = (start, end) => new Date(start.getTime() + (Math.random() * (end.getTime()
-    - start.getTime()))).toLocaleDateString();
-
-  createRows = (numberOfRows) => {
-    const rows = [];
-    for (let i = 1; i < numberOfRows + 1; i += 1) {
-      rows.push({
-        id: i,
-        first: ['Maria', 'Bobby  ', 'Alexander'][Math.floor((Math.random() * 3))],
-        last: ['Morisson', 'Brown  ', 'Medinberg'][Math.floor((Math.random() * 3))],
-        user: ['@dragon', '@hamster', '@cat'][Math.floor((Math.random() * 3))],
-        age: Math.min(100, Math.round(Math.random() * 30) + 20),
-        date: this.getRandomDate(new Date(2002, 3, 1), new Date(1954, 3, 1)),
-        location: ['Melbourne', 'Tokio', 'Moscow', 'Rome'][Math.floor((Math.random() * 4))],
-        work: ['Nova Soft', 'Dog Shop', 'Aspirity', 'Business Bro', 'Starlight'][Math.floor((Math.random() * 5))],
-      });
-    }
-    return rows;
   };
 
   render() {
