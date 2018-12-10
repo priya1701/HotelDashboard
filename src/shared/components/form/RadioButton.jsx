@@ -33,6 +33,7 @@ class RadioButtonField extends PureComponent {
 
   onChange = () => {
     this.props.onChange(this.props.radioValue);
+    console.log(this.props);
   };
 
   render() {

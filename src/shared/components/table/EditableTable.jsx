@@ -17,10 +17,29 @@ export default class EditableTable extends PureComponent {
 
   constructor(props, context) {
     super(props, context);
-    const originalRows = this.props.rows;
+    let originalRows = [];
+    originalRows = this.props.rows;
+    console.log(this.props);
     const rows = originalRows.slice(0, 10);
     this.state = { rows, originalRows };
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if(nextProps.rows.length !== 0){
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   console.log(prevProps);
+  //   console.log(this.props);
+  //   if (prevProps.rows !== this.props.rows) {
+  //     this.state.originalRows = this.props.rows;
+  //     console.log(this.state.originalRows);
+  //     console.log(this.rows);
+  //   }
+  // }
 
   handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
     const rows = this.state.rows.slice();
@@ -63,6 +82,7 @@ export default class EditableTable extends PureComponent {
           rowHeight={44}
           minColumnWidth={100}
         />
+        {console.log(this.state.originalRows)}
       </div>
     );
   }

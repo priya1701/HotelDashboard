@@ -90,8 +90,9 @@ class HorizontalForm extends PureComponent {
   }
 
   onChangeSex(e) {
+    console.log("radiooo",e.target.radioValue);
     this.setState({
-      Sex: e.target.value,
+      Sex: e.target.radioValue,
     });
   }
 
@@ -300,24 +301,23 @@ render() {
                   name="Sex"
                   component={renderRadioButtonField}
                   label="Male"
-                  radioValue="male"
+                  radioValue="Male"
                   value={this.state.Sex}
-                  onChange={this.onChangeSex}
                 />
                 <Field
                   name="Sex"
                   component={renderRadioButtonField}
                   label="Female"
-                  radioValue="female"
-                  value={this.state.Sex}
+                  value="Female"
+                  checked={this.state.Sex === 'Female'}
                   onChange={this.onChangeSex}
                 />
                 <Field
                   name="Sex"
                   component={renderRadioButtonField}
                   label="Other"
-                  radioValue="other"
-                  value={this.state.Sex}
+                  value="Other"
+                  checked={this.state.Sex === 'Other'}
                   onChange={this.onChangeSex}
                 />
               </div>
@@ -351,7 +351,7 @@ render() {
                     { value: 'UK', label: 'England' },
                   ]}
                   value={this.state.Nationality}
-                  onChange={this.onChangeNationality}
+                  onSelect={this.onChangeNationality}
                 />
               </div>
             </div>
@@ -512,7 +512,7 @@ render() {
                     { value: 'Passport', label: 'Passport' },
                   ]}
                   value={this.state.IdentificationType}
-                  onChange={this.onChangeIdentificationType}
+                  onSelect={this.onChangeIdentificationType}
                 />
               </div>
             </div>

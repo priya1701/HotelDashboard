@@ -5,7 +5,8 @@ import MainWrapper from './MainWrapper';
 
 import LogIn from '../LogIn/index';
 import BasicForm from '../CheckInManager/BasicForm/index';
-import DataTable from '../CheckInManager/DataTable/index';
+//import DataTable from '../CheckInManager/DataTable/index';
+import MyTable from '../CheckInManager/MyTable/index';
 import BlacklistReqForm from '../CheckInManager/BlacklistForm/Blacklist';
 import ManagerTable from '../Manager/DataTable/index';
 import ManMaterialTable from '../Manager/MaterialTable/index';
@@ -21,7 +22,7 @@ import StateTable from '../State/DataTable/index';
 const CheckInMan = () => (
   <Switch>
     <Route path="/checkIn/guest/add" component={BasicForm} />
-    <Route path="/checkIn/guest/list" component={DataTable} />
+    <Route path="/checkIn/guest/list" component={MyTable} />
     <Route path="/checkIn/blacklist/request" component={BlacklistReqForm} />
   </Switch>
 );

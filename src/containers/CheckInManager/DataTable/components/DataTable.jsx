@@ -4,7 +4,7 @@ import { Card, CardBody, Col } from 'reactstrap';
 import axios from 'axios';
 // import { Field } from 'redux-form';
 import EditTable from '../../../../shared/components/table/EditableTable';
-import Pagination from '../../../../shared/components/pagination/Pagination';
+// import Pagination from '../../../../shared/components/pagination/Pagination';
 
 export default class DataTable extends PureComponent {
   constructor() {
@@ -74,52 +74,87 @@ export default class DataTable extends PureComponent {
     ];
 
     this.state = {
-      Rows: [],
+      rows: this.getRows(),
       pageOfItems: [],
     };
-  }
-
-  componentDidMount() {
-    axios
-      .get('http://35.247.129.253:3510/api/hotel.cto.Guest')
-      .then((response) => {
-        const rows = response.data.map((c) => {
-          const arr = [
-            c.GuestId,
-            c.Surname,
-            c.GivenName,
-            c.Sex,
-            c.DateOfBirth,
-            c.Nationality,
-            c.ArrivedFrom,
-            c.AddressCurrent,
-            c.PermanentMobileNumber,
-            c.IdentificationType,
-            c.DateOfArrivalInHotel,
-            c.VerificationStatus,
-            c.BlackListStatus,
-            c.Remarks,
-          ];
-          return arr;
-        });
-        // create a new "state" object without mutating
-        // the original state object.
-        const newState = Object.assign({}, {
-          Rows: rows,
-        });
-        // store the new state object in the component's state
-        this.setState({ Rows: newState.Rows });
-      })
-      .catch(error => console.log(error));
   }
 
   onChangePage = (pageOfItems) => {
     this.setState({ pageOfItems });
   };
 
+  getRows = () => {
+    let rw = [];
+    axios
+      .get('http://35.247.129.253:3510/api/hotel.cto.Guest')
+      .then((response) => {
+        const rows = response.data.map((c) => {
+          const obj = {
+            GuestId: c.GuestId,
+            Surname: c.Surname,
+            GivenName: c.GivenName,
+            Sex: c.Sex,
+            DateOfBirth: c.DateOfBirth,
+            Nationality: c.Nationality,
+            ArrivedFrom: c.ArrivedFrom,
+            AddressCurrent: c.AddressCurrent,
+            PermanentMobileNumber: c.PermanentMobileNumber,
+            IdentificationType: c.IdentificationType,
+            DateOfArrivalInHotel: c.DateOfArrivalInHotel,
+            VerificationStatus: c.VerificationStatus,
+            BlackListStatus: c.BlackListStatus,
+            Remarks: c.Remarks,
+          };
+          return obj;
+        });
+        rw = rows;
+        console.log(rw);
+        return rw;
+      })
+      .catch(error => console.log(error));
+    // console.log(rw);
+    // return rw;
+  }
+
+  // componentWillMount() {
+  //   axios
+  //     .get('http://35.247.129.253:3510/api/hotel.cto.Guest')
+  //     .then((response) => {
+  //       const rows = response.data.map((c) => {
+  //         const obj = {
+  //           GuestId: c.GuestId,
+  //           Surname: c.Surname,
+  //           GivenName: c.GivenName,
+  //           Sex: c.Sex,
+  //           DateOfBirth: c.DateOfBirth,
+  //           Nationality: c.Nationality,
+  //           ArrivedFrom: c.ArrivedFrom,
+  //           AddressCurrent: c.AddressCurrent,
+  //           PermanentMobileNumber: c.PermanentMobileNumber,
+  //           IdentificationType: c.IdentificationType,
+  //           DateOfArrivalInHotel: c.DateOfArrivalInHotel,
+  //           VerificationStatus: c.VerificationStatus,
+  //           BlackListStatus: c.BlackListStatus,
+  //           Remarks: c.Remarks,
+  //         };
+  //         return obj;
+  //       });
+  //       // create a new "state" object without mutating
+  //       // the original state object.
+  //       const newState = Object.assign({}, {
+  //         rows,
+  //       });
+  //       // store the new state object in the component's state
+  //       this.setState({ rows: newState.rows });
+  //       console.log(' --> ', this.state.rows);
+  //     })
+  //     .catch(error => console.log(error));
+  // }
+
   render() {
     return (
       <Col md={12} lg={12}>
+        {console.log(this.state)}
         <Card>
           <CardBody>
             <div className="card__title">
@@ -138,7 +173,6 @@ export default class DataTable extends PureComponent {
               entries
             </p>
             <EditTable heads={this.heads} rows={this.state.rows} />
-            <Pagination items={this.state.rows} onChangePage={this.onChangePage} />
           </CardBody>
         </Card>
       </Col>
