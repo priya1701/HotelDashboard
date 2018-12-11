@@ -1,36 +1,72 @@
 import React, { PureComponent } from 'react';
+import axios from 'axios';
 import { Field, reduxForm } from 'redux-form';
 import EyeIcon from 'mdi-react/EyeIcon';
 import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
+import base from '../../../baseURL/base';
 
 class LogInForm extends PureComponent {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-  };
-
   constructor() {
     super();
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.showPassword = this.showPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
+      username: '',
+      password: '',
       showPassword: false,
     };
   }
 
-  showPassword = (e) => {
+  onChangeUsername(e){
+    this.setState({
+      username: e.target.value,
+    });
+  }
+
+  onChangePassword(e){
+    this.setState({
+      password: e.target.value,
+    });
+  }
+
+  showPassword(e){
     e.preventDefault();
     this.setState({
       showPassword: !this.state.showPassword,
     });
   };
 
-  render() {
-    const { handleSubmit } = this.props;
+  handleSubmit(e) {
+    e.preventDefault();
+    const cred = {
+      email: this.state.username,
+      password: this.state.password,
+    };
+    const path = base.URL + '/user/login';
+    axios.post(path, cred)
+    .then(r => {
+      console.log("Ress",r);
+      if(r.status === 200){
+        base.Token = r.data.TOKEN;
+        console.log("Token", base.Token);
+        if ((base.Token)&&(r.data.role === "General manager")){
+          window.location="/checkIn/guest/add";
+        }
+      }else{
+      }
+    });
+  }
 
+  render() {
     return (
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
         <div className="form__form-group">
           <span className="form__form-group-label">Username</span>
           <div className="form__form-group-field">
@@ -38,10 +74,12 @@ class LogInForm extends PureComponent {
               <AccountOutlineIcon />
             </div>
             <Field
-              name="name"
+              name="username"
               component="input"
               type="text"
-              placeholder="Name"
+              placeholder="User Id"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
             />
           </div>
         </div>
@@ -56,10 +94,12 @@ class LogInForm extends PureComponent {
               component="input"
               type={this.state.showPassword ? 'text' : 'password'}
               placeholder="Password"
+              value={this.state.password}
+              onChange={this.onChangePassword}
             />
             <button
               className={`form__form-group-button${this.state.showPassword ? ' active' : ''}`}
-              onClick={e => this.showPassword(e)}
+              onClick={this.showPassword}
             ><EyeIcon />
             </button>
           </div>
@@ -76,8 +116,12 @@ class LogInForm extends PureComponent {
             />
           </div>
         </div>
-        <Link className="btn btn-primary account__btn account__btn--small" to="/pages/one">Sign In</Link>
-        <Link className="btn btn-outline-primary account__btn account__btn--small" to="/log_in">Create Account</Link>
+        <button
+              className="btn btn-primary account__btn account__btn--small"
+              onClick={this.handleSubmit}
+        >Sign In
+        </button>
+        <Link className="btn btn-outline-primary account__btn account__btn--small" to="/sign_up">Create Account</Link>
       </form>
     );
   }

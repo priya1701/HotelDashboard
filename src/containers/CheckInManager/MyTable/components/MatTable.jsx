@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import MatTableHead from './MatTableHead';
+import base from '../../../../baseURL/base'
 // import Checkbox from '@material-ui/core/Checkbox';
 // import MatTableToolbar from './MatTableToolbar';
 
@@ -25,8 +26,12 @@ export default class MatTable extends PureComponent {
   };
 
   componentDidMount = () => {
+    console.log("Table Tkn", base.Token);
+    let config = {
+      headers: {'Authorization': "bearer " + base.Token}
+    };
     axios
-      .get('http://35.247.129.253:3510/api/hotel.cto.Guest')
+      .get('http://35.244.42.179:3000/user/guest', config)
       .then((response) => {
         const rows = response.data.map((c) => {
           const obj = {

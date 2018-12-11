@@ -4,6 +4,7 @@ import Layout from '../Layout/index';
 import MainWrapper from './MainWrapper';
 
 import LogIn from '../LogIn/index';
+import Register from '../Register/index';
 import BasicForm from '../CheckInManager/BasicForm/index';
 //import DataTable from '../CheckInManager/DataTable/index';
 import MyTable from '../CheckInManager/MyTable/index';
@@ -86,6 +87,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={LogIn} />
         <Route exact path="/log_in" component={LogIn} />
+        <Route exact path="/sign_up" component={Register} />
         <Route path="/" component={wrappedRoutes} />
       </Switch>
     </main>
