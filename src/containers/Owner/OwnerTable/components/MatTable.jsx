@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Card, CardBody, Col } from 'reactstrap';
+import { Container, Card, CardBody, Col, Row, Button, ButtonToolbar } from 'reactstrap';
+import { Field, reduxForm } from 'redux-form';
 import axios from 'axios';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import MatTableHead from './MatTableHead';
 import base from '../../../../baseHelper/base'
 import authHeader from '../../../../baseHelper/auth'
+import renderSelectField from '../../../../shared/components/form/Select';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import MatTableToolbar from './MatTableToolbar';
 
@@ -16,7 +18,7 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => b[orderBy] - a[orderBy] : (a, b) => a[orderBy] - b[orderBy];
 }
 
-export default class MatTable extends PureComponent {
+class MatTable extends PureComponent {
   state = {
     order: 'asc',
     orderBy: 'GuestId',
@@ -87,6 +89,35 @@ export default class MatTable extends PureComponent {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - (page * rowsPerPage));
 
     return (
+      <Container>
+      <Row>
+        <form className="form form--horizontal" onSubmit={handleSubmit}>
+          <div className="form__form-group">
+            <span className="form__form-group-label">Branch</span>
+            <div className="form__form-group-field">
+              <Field
+                name="Nationality"
+                component={renderSelectField}
+                options={[
+                  { value: 'India', label: 'India' },
+                  { value: 'US', label: 'America' },
+                  { value: 'Spain', label: 'Spain' },
+                  { value: 'China', label: 'China' },
+                  { value: 'Japan', label: 'Japan' },
+                  { value: 'UK', label: 'England' },
+                ]}
+              />
+            </div>
+          </div>
+          <ButtonToolbar className="form__button-toolbar">
+            <Button color="primary" type="submit">Submit</Button>
+            <Button type="button" onClick={reset}>
+              Cancel
+            </Button>
+          </ButtonToolbar>
+        </form>
+      </Row>
+      <Row>
       <Col md={12} lg={12}>
         <Card>
           <CardBody>
@@ -158,6 +189,12 @@ export default class MatTable extends PureComponent {
           </CardBody>
         </Card>
       </Col>
+      </Row>
+      </Container>
     );
   }
 }
+
+export default reduxForm({
+  form: 'filter_table_form_owner', // a unique identifier for this form
+})(MatTable);

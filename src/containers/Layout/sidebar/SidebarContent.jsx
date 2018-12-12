@@ -18,7 +18,7 @@ class SidebarContent extends Component {
     return (
       <div className="sidebar__content">
         <ul className="sidebar__block">
-          <SidebarLink title="Log In" icon="exit" route="/log_in" onClick={this.hideSidebar} />
+          <SidebarLink title="Log Out" icon="exit" route="/log_in" onClick={this.hideSidebar} />
           <SidebarCategory title="Layout" icon="layers">
             <button className="sidebar__link" onClick={this.props.changeToLight}>
               <p className="sidebar__link-title">Light Theme</p>

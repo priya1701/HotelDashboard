@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Card, CardBody, Col } from 'reactstrap';
+import { Card, CardBody, Col, } from 'reactstrap';
 import axios from 'axios';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,8 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import MatTableHead from './MatTableHead';
-import base from '../../../../baseHelper/base'
-import authHeader from '../../../../baseHelper/auth'
+import base from '../../../../baseHelper/base';
+import authHeader from '../../../../baseHelper/auth';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import MatTableToolbar from './MatTableToolbar';
 

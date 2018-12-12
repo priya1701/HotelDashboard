@@ -7,13 +7,12 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
-import base from '../../../baseURL/base';
+import base from '../../../baseHelper/base';
 
 class LogInForm extends PureComponent {
   constructor() {
     super();
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.showPassword = this.showPassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -24,16 +23,9 @@ class LogInForm extends PureComponent {
     };
   }
 
-  onChangeUsername(e){
-    this.setState({
-      username: e.target.value,
-    });
-  }
-
-  onChangePassword(e){
-    this.setState({
-      password: e.target.value,
-    });
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   showPassword(e){
@@ -49,15 +41,27 @@ class LogInForm extends PureComponent {
       email: this.state.username,
       password: this.state.password,
     };
-    const path = base.URL + '/user/login';
+    const path = base + '/login';
     axios.post(path, cred)
     .then(r => {
       console.log("Ress",r);
       if(r.status === 200){
-        base.Token = r.data.TOKEN;
-        console.log("Token", base.Token);
-        if ((base.Token)&&(r.data.role === "General manager")){
-          window.location="/checkIn/guest/add";
+        localStorage.setItem('token', JSON.stringify(r.data.TOKEN));
+        switch (r.data.role) {
+          case "General manager":
+            window.location = "/manager";
+          case "Check-In manager":
+            window.location = "/checkIn";
+          case "Hotel owner":
+            window.location = "/owner";
+          case "State police":
+            window.location = "/state";
+          case "Zonal police":
+            window.location = "/area";
+          case "National police":
+            window.location = "/country";
+          case "City police":
+            window.location = "/city";
         }
       }else{
       }
@@ -79,7 +83,7 @@ class LogInForm extends PureComponent {
               type="text"
               placeholder="User Id"
               value={this.state.username}
-              onChange={this.onChangeUsername}
+              onChange={this.handleChange}
             />
           </div>
         </div>
@@ -95,7 +99,7 @@ class LogInForm extends PureComponent {
               type={this.state.showPassword ? 'text' : 'password'}
               placeholder="Password"
               value={this.state.password}
-              onChange={this.onChangePassword}
+              onChange={this.handleChange}
             />
             <button
               className={`form__form-group-button${this.state.showPassword ? ' active' : ''}`}
