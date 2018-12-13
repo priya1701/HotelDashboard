@@ -1,6 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Layout from '../Layout/index';
+import LayoutCheckIn from '../Layout/sidebarCheckIn/index';
+import LayoutManager from '../Layout/sidebarManager/index';
+import LayoutOwner from '../Layout/sidebarOwner/index';
+import LayoutState from '../Layout/sidebarState/index';
+import LayoutCountry from '../Layout/sidebarCountry/index';
+import LayoutCity from '../Layout/sidebarCity/index';
+import LayoutArea from '../Layout/sidebarArea/index';
 import MainWrapper from './MainWrapper';
 
 import LogIn from '../LogIn/index';
@@ -11,10 +17,10 @@ import MyTable from '../CheckInManager/MyTable/index';
 import BlacklistReqForm from '../CheckInManager/BlacklistForm/Blacklist';
 import ManagerTable from '../Manager/ManagerTable/index';
 import ManMaterialTable from '../Manager/MaterialTable/index';
-import OwnerTable from '../Owner/DataTable/index';
+import OwnerTable from '../Owner/OwnerTable/index';
 import AreaTable from '../Area/AreaTable/index';
 import MaterialTable from '../Area/MaterialTable/index';
-import CityTable from '../City/DataTable/index';
+import CityTable from '../City/CityTable/index';
 import ContryTable from '../Country/CountryTable/index';
 import StateTable from '../State/StateTable/index';
 // import ExamplePageOne from '../Example/index';
@@ -22,7 +28,7 @@ import StateTable from '../State/StateTable/index';
 
 const CheckInMan = () => (
   <div>
-    <Layout />
+    <LayoutCheckIn />
     <div className="container__wrap">
       <Switch>
         <Route path="/checkIn/guest/add" component={BasicForm} />
@@ -35,7 +41,7 @@ const CheckInMan = () => (
 
 const Manager = () => (
   <div>
-    <Layout />
+    <LayoutManager />
     <div className="container__wrap">
       <Switch>
         <Route path="/manager/guest/list" component={ManagerTable} />
@@ -47,7 +53,7 @@ const Manager = () => (
 
 const Owner = () => (
   <div>
-    <Layout />
+    <LayoutOwner />
     <div className="container__wrap">
       <Switch>
         <Route path="/owner/guest/list" component={OwnerTable} />
@@ -58,7 +64,7 @@ const Owner = () => (
 
 const State = () => (
   <div>
-    <Layout />
+    <LayoutState />
     <div className="container__wrap">
       <Switch>
         <Route path="/state/guest/list" component={StateTable} />
@@ -69,7 +75,7 @@ const State = () => (
 
 const City = () => (
   <div>
-    <Layout />
+    <LayoutCity />
     <div className="container__wrap">
       <Switch>
         <Route path="/city/guest/list" component={CityTable} />
@@ -80,7 +86,7 @@ const City = () => (
 
 const Country = () => (
   <div>
-    <Layout />
+    <LayoutCountry />
     <div className="container__wrap">
       <Switch>
         <Route path="/country/guest/list" component={ContryTable} />
@@ -91,7 +97,7 @@ const Country = () => (
 
 const Area = () => (
   <div>
-    <Layout />
+    <LayoutArea />
     <div className="container__wrap">
       <Switch>
         <Route path="/area/guest/all" component={MaterialTable} />

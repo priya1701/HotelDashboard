@@ -64,9 +64,9 @@ class HorizontalForm extends PureComponent {
 
 
   onChangeSex(e) {
-    console.log("radiooo",e.target.radioValue);
+    console.log("radiooo",e.target.value);
     this.setState({
-      Sex: e.target.radioValue,
+      Sex: e.target.value,
     });
   }
 
@@ -213,7 +213,6 @@ render() {
                   label="Female"
                   value="Female"
                   checked={this.state.Sex === 'Female'}
-                  onChange={this.onChangeSex}
                 />
                 <Field
                   name="Sex"

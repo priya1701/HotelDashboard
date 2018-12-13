@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
 import base from '../../../baseHelper/base';
+import history from '../../../baseHelper/history';
 
 class LogInForm extends PureComponent {
   constructor() {
@@ -47,21 +48,23 @@ class LogInForm extends PureComponent {
       console.log("Ress",r);
       if(r.status === 200){
         localStorage.setItem('token', JSON.stringify(r.data.TOKEN));
+        console.log("Role After Login", r.data.role);
         switch (r.data.role) {
           case "General manager":
-            window.location = "/manager";
-          case "Check-In manager":
-            window.location = "/checkIn";
+            console.log("Inside GM");
+            return window.location = "/manager";
+          case "Check-in manager":
+            return window.location = "/checkIn";
           case "Hotel owner":
-            window.location = "/owner";
+            return window.location = "/owner";
           case "State police":
-            window.location = "/state";
-          case "Zonal police":
-            window.location = "/area";
+            return window.location = "/state";
           case "National police":
-            window.location = "/country";
+            return window.location = "/country";
           case "City police":
-            window.location = "/city";
+            return window.location = "/city";
+          case "Zonal police":
+            return window.location = "/area";
         }
       }else{
       }

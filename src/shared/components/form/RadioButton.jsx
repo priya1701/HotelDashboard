@@ -55,6 +55,7 @@ class RadioButtonField extends PureComponent {
           type="radio"
           onChange={this.onChange}
           checked={value === radioValue}
+          value={value}
           disabled={disabled}
         />
         <span className="radio-btn__radio-custom" />
@@ -76,6 +77,7 @@ const renderRadioButtonField = props => (
     defaultChecked={props.defaultChecked}
     disabled={props.disabled}
     radioValue={props.radioValue}
+    value={props.value}
     className={props.className}
   />
 );
@@ -98,6 +100,7 @@ renderRadioButtonField.defaultProps = {
   disabled: false,
   radioValue: '',
   className: '',
+  value: '',
 };
 
 export default renderRadioButtonField;
