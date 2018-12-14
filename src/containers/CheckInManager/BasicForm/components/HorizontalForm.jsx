@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import axios from 'axios';
 import CalendarBlankIcon from 'mdi-react/CalendarBlankIcon';
 import TimetableIcon from 'mdi-react/TimetableIcon';
+import Radio from '@material-ui/core/Radio';
 // import EyeIcon from 'mdi-react/EyeIcon';
 // import EmailIcon from 'mdi-react/EmailIcon';
 // import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
@@ -12,9 +13,10 @@ import PropTypes from 'prop-types';
 // import renderFileInputField from '../../../../shared/components/form/FileInput';
 import renderSelectField from '../../../../shared/components/form/Select';
 // import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
-import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
+//import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
 import renderDatePickerField from '../../../../shared/components/form/DatePicker';
 import renderDateTimePickerField from '../../../../shared/components/form/DateTimePicker';
+import renderRadioGroup from './RenderRadio';
 
 class HorizontalForm extends PureComponent {
   static propTypes = {
@@ -59,27 +61,32 @@ class HorizontalForm extends PureComponent {
 
   handleChange(e) {
     const { name, value } = e.target;
+    console.log("InPUT",e.target.value);
     this.setState({ [name]: value });
   }
 
 
   onChangeSex(e) {
-    console.log("radiooo",e.target.value);
+    console.log("radiooo",e);
     this.setState({
       Sex: e.target.value,
     });
   }
 
   onChangeDateOfBirth(e) {
+    console.log("Date", e._d);
     this.setState({
-      DateOfBirth: e.target.value.toString(),
+      DateOfBirth: e._d,
     });
+    console.log("Date State", this.state.DateOfBirth);
   }
 
   onChangeIdentificationType(e) {
+    console.log("SElect", e);
     this.setState({
-      IdentificationType: e.target.value,
+      IdentificationType: e.value
     });
+    console.log("Selected State", this.state.IdentificationType);
   }
 
   onChangeDateOfArrivalInHotel(e) {
@@ -200,28 +207,11 @@ render() {
             <div className="form__form-group">
               <span className="form__form-group-label">Sex</span>
               <div className="form__form-group-field">
-                <Field
-                  name="Sex"
-                  component={renderRadioButtonField}
-                  label="Male"
-                  radioValue="Male"
-                  value={this.state.Sex}
-                />
-                <Field
-                  name="Sex"
-                  component={renderRadioButtonField}
-                  label="Female"
-                  value="Female"
-                  checked={this.state.Sex === 'Female'}
-                />
-                <Field
-                  name="Sex"
-                  component={renderRadioButtonField}
-                  label="Other"
-                  value="Other"
-                  checked={this.state.Sex === 'Other'}
-                  onChange={this.onChangeSex}
-                />
+                <Field name="sex" component={renderRadioGroup} onChange={this.onChangeSex}>
+                  <Radio value="Male" label="Male" />
+                  <Radio value="Female" label="Female" />
+                  <Radio value="Other" label="Other" />
+                </Field>
               </div>
             </div>
             <div className="form__form-group">
@@ -414,7 +404,7 @@ render() {
                     { value: 'Passport', label: 'Passport' },
                   ]}
                   value={this.state.IdentificationType}
-                  onSelect={this.onChangeIdentificationType}
+                  onChange={this.onChangeIdentificationType}
                 />
               </div>
             </div>
