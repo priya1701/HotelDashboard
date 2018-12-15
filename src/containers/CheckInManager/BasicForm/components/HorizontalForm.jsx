@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import axios from 'axios';
 import CalendarBlankIcon from 'mdi-react/CalendarBlankIcon';
 import TimetableIcon from 'mdi-react/TimetableIcon';
-import Radio from '@material-ui/core/Radio';
 // import EyeIcon from 'mdi-react/EyeIcon';
 // import EmailIcon from 'mdi-react/EmailIcon';
 // import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
@@ -13,10 +12,9 @@ import PropTypes from 'prop-types';
 // import renderFileInputField from '../../../../shared/components/form/FileInput';
 import renderSelectField from '../../../../shared/components/form/Select';
 // import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
-//import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
+import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
 import renderDatePickerField from '../../../../shared/components/form/DatePicker';
 import renderDateTimePickerField from '../../../../shared/components/form/DateTimePicker';
-import renderRadioGroup from './RenderRadio';
 
 class HorizontalForm extends PureComponent {
   static propTypes = {
@@ -207,11 +205,30 @@ render() {
             <div className="form__form-group">
               <span className="form__form-group-label">Sex</span>
               <div className="form__form-group-field">
-                <Field name="sex" component={renderRadioGroup} onChange={this.onChangeSex}>
-                  <Radio value="Male" label="Male" />
-                  <Radio value="Female" label="Female" />
-                  <Radio value="Other" label="Other" />
-                </Field>
+                <Field
+                  name="sex"
+                  component={renderRadioButtonField}
+                  label="Male"
+                  radioValue="Male"
+                  value={this.state.Sex}
+                  onChange={this.onChangeSex}
+                />
+                <Field
+                  name="sex"
+                  component={renderRadioButtonField}
+                  label="Female"
+                  radioValue="Female"
+                  value={this.state.Sex}
+                  onChange={this.onChangeSex}
+                />
+                <Field
+                  name="sex"
+                  component={renderRadioButtonField}
+                  label="Other"
+                  radioValue="Other"
+                  value={this.state.Sex}
+                  onChange={this.onChangeSex}
+                />
               </div>
             </div>
             <div className="form__form-group">
