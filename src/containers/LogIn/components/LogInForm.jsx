@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
 import base from '../../../baseHelper/base';
-import history from '../../../baseHelper/history';
+//import history from '../../../baseHelper/history';
+import userActions from '../../../redux/actions/userActions';
 
 class LogInForm extends PureComponent {
   constructor() {
@@ -18,8 +19,6 @@ class LogInForm extends PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      username: '',
-      password: '',
       showPassword: false,
     };
   }
@@ -73,7 +72,7 @@ class LogInForm extends PureComponent {
 
   render() {
     return (
-      <form className="form">
+      <form className="form" onSubmit={this.handleSubmit}>
         <div className="form__form-group">
           <span className="form__form-group-label">Username</span>
           <div className="form__form-group-field">
@@ -81,12 +80,10 @@ class LogInForm extends PureComponent {
               <AccountOutlineIcon />
             </div>
             <Field
-              name="username"
+              name="email"
               component="input"
               type="text"
               placeholder="User Id"
-              value={this.state.username}
-              onChange={this.handleChange}
             />
           </div>
         </div>
@@ -101,8 +98,6 @@ class LogInForm extends PureComponent {
               component="input"
               type={this.state.showPassword ? 'text' : 'password'}
               placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
             />
             <button
               className={`form__form-group-button${this.state.showPassword ? ' active' : ''}`}
@@ -123,11 +118,7 @@ class LogInForm extends PureComponent {
             />
           </div>
         </div>
-        <button
-              className="btn btn-primary account__btn account__btn--small"
-              onClick={this.handleSubmit}
-        >Sign In
-        </button>
+        <button className="btn btn-primary account__btn account__btn--small">Sign In</button>
         <Link className="btn btn-outline-primary account__btn account__btn--small" to="/sign_up">Create Account</Link>
       </form>
     );
