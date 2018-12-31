@@ -2,7 +2,7 @@ import axios from 'axios';
 import authHeader from '../../baseHelper/auth';
 import base from '../../baseHelper/base';
 
-export default userService = {
+const userService = {
     login,
     logout,
     getAll
@@ -57,3 +57,6 @@ function handleResponse(response) {
         return data;
     });
 }
+
+
+export default userService;

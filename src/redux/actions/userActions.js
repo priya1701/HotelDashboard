@@ -1,9 +1,9 @@
 import userConstants from '../constants/userConstants';
 import userService from '../services/userService';
-import alertActions from './';
+import alertActions from './alertActions';
 import history  from '../../baseHelper/history';
 
-export default userActions = {
+const userActions = {
     login,
     logout,
 };
@@ -50,3 +50,5 @@ function logout() {
     userService.logout();
     return { type: userConstants.LOGOUT };
 }
+
+export default userActions;
