@@ -9,12 +9,14 @@ const userActions = {
 };
 
 function login(username, password) {
+    console.log("Inside Action!!");
     return dispatch => {
         dispatch(request({ username }));
 
         userService.login(username, password)
             .then(
                 user => { 
+                    console.log("USer", user);
                     dispatch(success(user));
                     switch (user) {
                       case "General manager":

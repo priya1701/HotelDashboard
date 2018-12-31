@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { Field, reduxForm } from 'redux-form';
 import EyeIcon from 'mdi-react/EyeIcon';
 import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
@@ -7,25 +7,17 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
-import base from '../../../baseHelper/base';
+//import base from '../../../baseHelper/base';
 //import history from '../../../baseHelper/history';
-import userActions from '../../../redux/actions/userActions';
 
 class LogInForm extends PureComponent {
   constructor() {
     super();
-    this.handleChange = this.handleChange.bind(this);
     this.showPassword = this.showPassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       showPassword: false,
     };
-  }
-
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
   }
 
   showPassword(e){
@@ -35,44 +27,10 @@ class LogInForm extends PureComponent {
     });
   };
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const cred = {
-      email: this.state.username,
-      password: this.state.password,
-    };
-    const path = base + '/login';
-    axios.post(path, cred)
-    .then(r => {
-      console.log("Ress",r);
-      if(r.status === 200){
-        localStorage.setItem('token', JSON.stringify(r.data.TOKEN));
-        console.log("Role After Login", r.data.role);
-        switch (r.data.role) {
-          case "General manager":
-            console.log("Inside GM");
-            return window.location = "/manager";
-          case "Check-in manager":
-            return window.location = "/checkIn";
-          case "Hotel owner":
-            return window.location = "/owner";
-          case "State police":
-            return window.location = "/state";
-          case "National police":
-            return window.location = "/country";
-          case "City police":
-            return window.location = "/city";
-          case "Zonal police":
-            return window.location = "/area";
-        }
-      }else{
-      }
-    });
-  }
-
   render() {
+    const {handleSubmit} = this.props;
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form__form-group">
           <span className="form__form-group-label">Username</span>
           <div className="form__form-group-field">

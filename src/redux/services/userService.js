@@ -9,6 +9,7 @@ const userService = {
 };
 
 function login(username, password) {
+    console.log("Inside login service");
     const cred = {
         email: username,
         password: password,
