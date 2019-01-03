@@ -1,3 +1,4 @@
+import React from 'react';
 import userConstants from '../constants/userConstants';
 import userService from '../services/userService';
 import alertActions from './alertActions';
@@ -10,8 +11,11 @@ const userActions = {
 
 function login(username, password) {
     console.log("Inside Action!!");
-    return dispatch => {
-        dispatch(request({ username }));
+    //  dispatch => {
+    //     console.log("dispatched");
+    //     dispatch(request({ username }));
+
+       
 
         userService.login(username, password)
             .then(
@@ -41,7 +45,7 @@ function login(username, password) {
                     dispatch(alertActions.error(error));
                 }
             );
-    };
+    // };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
