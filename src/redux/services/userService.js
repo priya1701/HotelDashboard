@@ -16,15 +16,18 @@ function login(username, password) {
     };
     const path = base + '/login';
     axios.post(path, cred)
-        .then(handleResponse)
         .then(r => {
             console.log("Ress", r);
             if (r.data.TOKEN) {
                 localStorage.setItem('token', JSON.stringify(r.data.TOKEN));
                 console.log("Role After Login", r.data.role);
             }
-            return r.data.role;
-        }); 
+            return Promise.resolve(r.data.role);
+        })
+        .catch(error =>{
+            console.log(error);
+            return Promise.reject(error);
+        });
 }
 
 function logout() {
@@ -42,9 +45,9 @@ function getAll() {
 }
 
 function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
+    console.log("Response after login", response);
+        const Data = response.data;
+        if (response.statusText !== "OK") {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
@@ -55,8 +58,7 @@ function handleResponse(response) {
             return Promise.reject(error);
         }
 
-        return data;
-    });
+        return Data;
 }
 
 
