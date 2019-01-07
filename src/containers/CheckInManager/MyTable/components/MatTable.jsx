@@ -31,6 +31,8 @@ export default class MatTable extends PureComponent {
     let config = {
       headers: authHeader()
     };
+    
+    console.log("Table Tkn", config);
     axios
       .get('http://35.244.42.179:3000/user/guest', config)
       .then((response) => {

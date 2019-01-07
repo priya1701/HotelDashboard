@@ -15,19 +15,20 @@ function login(username, password) {
         password: password,
     };
     const path = base + '/login';
-    axios.post(path, cred)
+    var role = axios.post(path, cred)
         .then(r => {
             console.log("Ress", r);
             if (r.data.TOKEN) {
                 localStorage.setItem('token', JSON.stringify(r.data.TOKEN));
                 console.log("Role After Login", r.data.role);
             }
-            return Promise.resolve(r.data.role);
+            return r.data.role;
         })
         .catch(error =>{
             console.log(error);
             return Promise.reject(error);
         });
+      return role;
 }
 
 function logout() {

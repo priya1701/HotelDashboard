@@ -21,23 +21,23 @@ function login(username, password) {
             .then(
                 user => { 
                     console.log("USer", user);
-                    dispatch(success(user));
                     switch (user) {
                       case "General manager":
                         console.log("Inside GM");
-                        history.push('/manager');
+                        return history.push('/manager');
                       case "Check-in manager":
-                        history.push('/checkIn');
+                      console.log("Inside CheckM");
+                        return window.location = "/checkIn/guest/list";
                       case "Hotel owner":
-                        history.push('/owner');
+                        return history.push('/owner');
                       case "State police":
-                        history.push('/state');
+                        return history.push('/state');
                       case "National police":
-                        history.push('/country');
+                        return history.push('/country');
                       case "City police":
-                        history.push('/city');
+                        return history.push('/city');
                       case "Zonal police":
-                        history.push('/area');
+                        return history.push('/area');
                     }
                 },
                 error => {
