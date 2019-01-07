@@ -3,7 +3,7 @@ import React from 'react';
 // import FacebookIcon from 'mdi-react/FacebookIcon';
 // import GooglePlusIcon from 'mdi-react/GooglePlusIcon';
 import LogInForm from './components/LogInForm';
-import showResults from './components/Submit';
+import submit from './components/Submit';
 
 const LogIn = () => (
   <div className="account">
@@ -17,7 +17,7 @@ const LogIn = () => (
           </h3>
           <h4 className="account__subhead subhead">Start your business easily</h4>
         </div>
-        <LogInForm onSubmit={showResults} />
+        <LogInForm onSubmit={submit} />
       </div>
     </div>
   </div>

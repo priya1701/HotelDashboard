@@ -7,7 +7,6 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 import renderCheckBoxField from '../../../shared/components/form/CheckBox';
-import submit from './Submit'
 //import base from '../../../baseHelper/base';
 //import history from '../../../baseHelper/history';
 
@@ -31,7 +30,7 @@ class LogInForm extends PureComponent {
   render() {
     const {handleSubmit} = this.props;
     return (
-      <form className="form" onSubmit={handleSubmit(submit)}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form__form-group">
           <span className="form__form-group-label">Username</span>
           <div className="form__form-group-field">

@@ -16,7 +16,7 @@ import renderRadioButtonField from '../../../../shared/components/form/RadioButt
 import renderDatePickerField from '../../../../shared/components/form/DatePicker';
 import renderDateTimePickerField from '../../../../shared/components/form/DateTimePicker';
 
-class HorizontalForm extends PureComponent {
+class IndianGuestForm extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
@@ -24,75 +24,8 @@ class HorizontalForm extends PureComponent {
   };
 
   constructor() {
-    super();
-    this.onChangeSex = this.onChangeSex.bind(this);
-    this.onChangeDateOfBirth = this.onChangeDateOfBirth.bind(this);
-    this.onChangeIdentificationType = this.onChangeIdentificationType.bind(this);
-    this.onChangeDateOfArrivalInHotel = this.onChangeDateOfArrivalInHotel.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.state = {
-      showPassword: false,
-      GuestId: '',
-      Surname: '',
-      GivenName: '',
-      Sex: '',
-      DateOfBirth: '',
-      Nationality: '',
-      ArrivedFrom: '',
-      HotelName: '',
-      HotelChainName: '',
-      HotelAddress: '',
-      Zone: '',
-      City: '',
-      State: '',
-      HotelPhoneNo: '',
-      AddressCurrent: '',
-      PermanentMobileNumber: '',
-      IdentificationType: '',
-      DateOfArrivalInHotel: '',
-      Remarks: '',
-    };
+    super();    
   }
-
-  handleChange(e) {
-    const { name, value } = e.target;
-    console.log("InPUT",e.target.value);
-    this.setState({ [name]: value });
-  }
-
-
-  onChangeSex(e) {
-    console.log("radiooo",e);
-    this.setState({
-      Sex: e.target.value,
-    });
-  }
-
-  onChangeDateOfBirth(e) {
-    console.log("Date", e._d);
-    this.setState({
-      DateOfBirth: e._d,
-    });
-    console.log("Date State", this.state.DateOfBirth);
-  }
-
-  onChangeIdentificationType(e) {
-    console.log("SElect", e);
-    this.setState({
-      IdentificationType: e.value
-    });
-    console.log("Selected State", this.state.IdentificationType);
-  }
-
-  onChangeDateOfArrivalInHotel(e) {
-    this.setState({
-      DateOfArrivalInHotel: e.target.value,
-    });
-  }
-
 
   onSubmit(e) {
     e.preventDefault();
@@ -145,12 +78,6 @@ class HorizontalForm extends PureComponent {
     });
   }
 
-showPassword = (e) => {
-  e.preventDefault();
-  this.setState({
-    showPassword: !this.state.showPassword,
-  });
-};
 
 render() {
   const { handleSubmit, reset, t } = this.props;
@@ -171,8 +98,6 @@ render() {
                   component="input"
                   type="text"
                   placeholder="Id"
-                  value={this.state.GuestId}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -183,9 +108,6 @@ render() {
                   name="Surname"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.Surname}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -196,9 +118,6 @@ render() {
                   name="GivenName"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.GivenName}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -210,24 +129,18 @@ render() {
                   component={renderRadioButtonField}
                   label="Male"
                   radioValue="Male"
-                  value={this.state.Sex}
-                  onChange={this.onChangeSex}
                 />
                 <Field
                   name="sex"
                   component={renderRadioButtonField}
                   label="Female"
                   radioValue="Female"
-                  value={this.state.Sex}
-                  onChange={this.onChangeSex}
                 />
                 <Field
                   name="sex"
                   component={renderRadioButtonField}
                   label="Other"
                   radioValue="Other"
-                  value={this.state.Sex}
-                  onChange={this.onChangeSex}
                 />
               </div>
             </div>
@@ -237,8 +150,6 @@ render() {
                 <Field
                   name="DateOfBirth"
                   component={renderDatePickerField}
-                  value={this.state.DateOfBirth}
-                  onChange={this.onChangeDateOfBirth}
                 />
                 <div className="form__form-group-icon">
                   <CalendarBlankIcon />
@@ -259,8 +170,6 @@ render() {
                     { value: 'Japan', label: 'Japan' },
                     { value: 'UK', label: 'England' },
                   ]}
-                  value={this.state.Nationality}
-                  onSelect={this.handleChange}
                 />
               </div>
             </div>
@@ -271,9 +180,6 @@ render() {
                   name="ArrivedFrom"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.ArrivedFrom}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -284,9 +190,6 @@ render() {
                   name="AddressCurrent"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.AddressCurrent}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -297,9 +200,6 @@ render() {
                   name="PermanentMobileNumber"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.PermanentMobileNumber}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -310,9 +210,6 @@ render() {
                   name="HotelName"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.HotelName}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -323,9 +220,6 @@ render() {
                   name="HotelChainName"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.HotelChainName}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -336,9 +230,6 @@ render() {
                   name="HotelAddress"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.HotelAddress}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -349,9 +240,6 @@ render() {
                   name="Zone"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.Zone}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -362,9 +250,6 @@ render() {
                   name="City"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.City}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -375,9 +260,6 @@ render() {
                   name="State"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.State}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -388,9 +270,6 @@ render() {
                   name="HotelPhoneNo"
                   component="input"
                   type="text"
-                  placeholder=""
-                  value={this.state.HotelPhoneNo}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -400,8 +279,6 @@ render() {
                 <Field
                   name="DateOfArrivalInHotel"
                   component={renderDateTimePickerField}
-                  value={this.state.DateOfArrivalInHotel}
-                  onChange={this.onChangeDateOfArrivalInHotel}
                 />
                 <div className="form__form-group-icon">
                   <TimetableIcon />
@@ -420,8 +297,6 @@ render() {
                     { value: 'DrivingLicence', label: 'Driving Licence' },
                     { value: 'Passport', label: 'Passport' },
                   ]}
-                  value={this.state.IdentificationType}
-                  onChange={this.onChangeIdentificationType}
                 />
               </div>
             </div>
@@ -432,16 +307,12 @@ render() {
                   name="Remarks"
                   component="textarea"
                   type="text"
-                  value={this.state.Remarks}
-                  onChange={this.handleChange}
                 />
               </div>
             </div>
             <ButtonToolbar className="form__button-toolbar">
-              <Button color="primary" type="submit" onClick={this.onSubmit}>Submit</Button>
-              <Button type="button" onClick={reset}>
-                Cancel
-              </Button>
+              <Button color="primary" type="submit">Submit</Button>
+              <Button type="button" onClick={reset}>Cancel</Button>
             </ButtonToolbar>
           </form>
         </CardBody>
@@ -452,5 +323,5 @@ render() {
 }
 
 export default reduxForm({
-  form: 'horizontal_form', // a unique identifier for this form
-})(translate('common')(HorizontalForm));
+  form: 'indian_guest_form', // a unique identifier for this form
+})(translate('common')(IndianGuestForm));

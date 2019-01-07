@@ -1,4 +1,3 @@
-import React from 'react';
 import userConstants from '../constants/userConstants';
 import userService from '../services/userService';
 import alertActions from './alertActions';
@@ -10,7 +9,7 @@ const userActions = {
 };
 
 function login(username, password) {
-    console.log("Inside Action!!");
+    console.log("Inside UserAction!!");
     //  dispatch => {
     //     console.log("dispatched");
     //     dispatch(request({ username }));
