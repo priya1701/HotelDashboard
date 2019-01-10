@@ -34,6 +34,7 @@ class FileInputField extends PureComponent {
               e.preventDefault();
               // convert files to an array
               const files = [...e.target.files];
+              console.log("File", files);
               onChange({ file: files[0], name: files[0].name });
             }
           }

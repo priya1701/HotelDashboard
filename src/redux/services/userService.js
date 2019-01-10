@@ -1,11 +1,10 @@
 import axios from 'axios';
-import authHeader from '../../baseHelper/auth';
+//import authHeader from '../../baseHelper/auth';
 import base from '../../baseHelper/base';
 
 const userService = {
     login,
     logout,
-    getAll
 };
 
 function login(username, password) {
@@ -15,6 +14,7 @@ function login(username, password) {
         password: password,
     };
     const path = base + '/login';
+    console.log("URL", path);
     var role = axios.post(path, cred)
         .then(r => {
             console.log("Ress", r);
@@ -28,7 +28,7 @@ function login(username, password) {
             console.log(error);
             return Promise.reject(error);
         });
-      return role;
+    return role;
 }
 
 function logout() {
@@ -36,31 +36,31 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
+// function getAll() {
+//     const requestOptions = {
+//         method: 'GET',
+//         headers: authHeader()
+//     };
 
-    return fetch(`/users`, requestOptions).then(handleResponse);
-}
+//     return fetch(`/users`, requestOptions).then(handleResponse);
+// }
 
-function handleResponse(response) {
-    console.log("Response after login", response);
-        const Data = response.data;
-        if (response.statusText !== "OK") {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
-            }
+// function handleResponse(response) {
+//     console.log("Response after login", response);
+//         const Data = response.data;
+//         if (response.statusText !== "OK") {
+//             if (response.status === 401) {
+//                 // auto logout if 401 response returned from api
+//                 logout();
+//                 location.reload(true);
+//             }
 
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
+//             const error = (data && data.message) || response.statusText;
+//             return Promise.reject(error);
+//         }
 
-        return Data;
-}
+//         return Data;
+// }
 
 
 export default userService;

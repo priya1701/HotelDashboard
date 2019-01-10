@@ -40,15 +40,15 @@ function login(username, password) {
                     }
                 },
                 error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    //dispatch(failure(error));
+                    alertActions.error(error);
                 }
             );
     // };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    // function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+    // function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    // function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
-import axios from 'axios';
 import CalendarBlankIcon from 'mdi-react/CalendarBlankIcon';
 import TimetableIcon from 'mdi-react/TimetableIcon';
 // import EyeIcon from 'mdi-react/EyeIcon';
@@ -9,7 +8,7 @@ import TimetableIcon from 'mdi-react/TimetableIcon';
 // import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-// import renderFileInputField from '../../../../shared/components/form/FileInput';
+import renderFileInputField from '../../../../shared/components/form/FileInput';
 import renderSelectField from '../../../../shared/components/form/Select';
 // import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
 import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
@@ -23,59 +22,8 @@ class IndianGuestForm extends PureComponent {
     reset: PropTypes.func.isRequired,
   };
 
-  constructor() {
-    super();    
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-    const newData = {
-      GuestId: this.state.GuestId,
-      Surname: this.state.Surname,
-      GivenName: this.state.GivenName,
-      Sex: this.state.Sex,
-      DateOfBirth: this.state.DateOfBirth,
-      Nationality: this.state.Nationality,
-      ArrivedFrom: this.state.ArrivedFrom,
-      BlackListStatus: 'NotBlacklisted',
-      HotelName: this.state.HotelName,
-      HotelChainName: this.state.HotelChainName,
-      HotelAddress: this.state.HotelAddress,
-      Zone: this.state.Zone,
-      City: this.state.City,
-      State: this.state.State,
-      HotelPhoneNo: this.state.HotelPhoneNo,
-      AddressCurrent: this.state.AddressCurrent,
-      PermanentMobileNumber: this.state.PermanentMobileNumber,
-      IdentificationType: this.state.IdentificationType,
-      DateOfArrivalInHotel: this.state.DateOfArrivalInHotel,
-      VerificationStatus: 'Pending',
-      Remarks: this.state.Remarks,
-    };
-    axios.post('http://35.247.129.253:3510/api/hotel.cto.Guest', newData)
-      .then(res => console.log(res.data));
-    console.log('PostData: ', this.state);
-    this.setState({
-      GuestId: '',
-      Surname: '',
-      GivenName: '',
-      Sex: '',
-      DateOfBirth: '',
-      Nationality: '',
-      ArrivedFrom: '',
-      HotelName: '',
-      HotelChainName: '',
-      HotelAddress: '',
-      Zone: '',
-      City: '',
-      State: '',
-      HotelPhoneNo: '',
-      AddressCurrent: '',
-      PermanentMobileNumber: '',
-      IdentificationType: '',
-      DateOfArrivalInHotel: '',
-      Remarks: '',
-    });
+  constructor(props) {
+    super(props);    
   }
 
 
@@ -125,19 +73,19 @@ render() {
               <span className="form__form-group-label">Sex</span>
               <div className="form__form-group-field">
                 <Field
-                  name="sex"
+                  name="Sex"
                   component={renderRadioButtonField}
                   label="Male"
                   radioValue="Male"
                 />
                 <Field
-                  name="sex"
+                  name="Sex"
                   component={renderRadioButtonField}
                   label="Female"
                   radioValue="Female"
                 />
                 <Field
-                  name="sex"
+                  name="Sex"
                   component={renderRadioButtonField}
                   label="Other"
                   radioValue="Other"
@@ -208,16 +156,6 @@ render() {
               <div className="form__form-group-field">
                 <Field
                   name="HotelName"
-                  component="input"
-                  type="text"
-                />
-              </div>
-            </div>
-            <div className="form__form-group">
-              <span className="form__form-group-label">Hotel Chain Name</span>
-              <div className="form__form-group-field">
-                <Field
-                  name="HotelChainName"
                   component="input"
                   type="text"
                 />
@@ -300,6 +238,17 @@ render() {
                 />
               </div>
             </div>
+            <div className="form__form-group">
+                <span className="form__form-group-label">
+                  Upload ID
+                </span>
+                <div className="form__form-group-field">
+                  <Field
+                    name="file"
+                    component={renderFileInputField}
+                  />
+                </div>
+              </div>
             <div className="form__form-group">
               <span className="form__form-group-label">Remarks</span>
               <div className="form__form-group-field">

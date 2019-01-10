@@ -27,7 +27,6 @@ export default class MatTable extends PureComponent {
   };
 
   componentDidMount = () => {
-    console.log("Table Tkn", base.Token);
     let config = {
       headers: authHeader()
     };

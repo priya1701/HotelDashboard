@@ -1,10 +1,9 @@
-const userConstants = {
-    CHECKIN_INDIAN: 'USERS_LOGIN_REQUEST',
+const checkinConstants = {
+    CHECKIN_INDIAN: 'GUEST_CHECKIN_INDIAN',
+    CHECKIN_FOREIGNER: 'GUEST_CHECKIN_FOREIGNER',
     
-    LOGIN_SUCCESS: 'USERS_LOGIN_SUCCESS',
-    LOGIN_FAILURE: 'USERS_LOGIN_FAILURE',
-    
-    LOGOUT: 'USERS_LOGOUT',
+    CHECKIN_SUCCESS: 'GUEST_CHECKIN_SUCCESS',
+    CHECKIN_FAILURE: 'GUEST_CHECKIN_FAILURE',
 };
 
-export default userConstants;
+export default checkinConstants;

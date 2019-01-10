@@ -64,12 +64,12 @@ class TabsBorderedBottom extends PureComponent {
                 <TabContent activeTab={this.state.activeTab}>
                   <TabPane tabId="1">
                     <Row>
-                      <IndianGuestForm onSubmit={showResults} />
+                      <IndianGuestForm onSubmit={submit} />
                     </Row>
                   </TabPane>
                   <TabPane tabId="2">
                     <Row>
-                      <ForeignerGuestForm onSubmit={showResults} />
+                      <ForeignerGuestForm onSubmit={submit} />
                     </Row>
                   </TabPane>
                 </TabContent>
