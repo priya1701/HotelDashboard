@@ -115,7 +115,7 @@ const Area = () => (
 //   </div>
 // );
 
-const Router = () => (
+const RouterMain = () => (
   <MainWrapper>
     <main>
       <Switch>
@@ -134,4 +134,4 @@ const Router = () => (
   </MainWrapper>
 );
 
-export default Router;
+export default RouterMain;

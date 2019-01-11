@@ -26,7 +26,7 @@ function login(username, password) {
                         return history.push('/manager');
                       case "Check-in manager":
                       console.log("Inside CheckM");
-                        return window.location = "/checkIn/guest/list";
+                        return history.push("/checkIn/guest/list");
                       case "Hotel owner":
                         return history.push('/owner');
                       case "State police":
