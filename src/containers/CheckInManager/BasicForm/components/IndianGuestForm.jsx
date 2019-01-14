@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+
 import CalendarBlankIcon from 'mdi-react/CalendarBlankIcon';
 import TimetableIcon from 'mdi-react/TimetableIcon';
 // import EyeIcon from 'mdi-react/EyeIcon';
@@ -14,6 +16,7 @@ import renderSelectField from '../../../../shared/components/form/Select';
 import renderRadioButtonField from '../../../../shared/components/form/RadioButton';
 import renderDatePickerField from '../../../../shared/components/form/DatePicker';
 import renderDateTimePickerField from '../../../../shared/components/form/DateTimePicker';
+import checkInActions from '../../../../redux/actions/checkInActions';
 
 class IndianGuestForm extends PureComponent {
   static propTypes = {
@@ -26,6 +29,13 @@ class IndianGuestForm extends PureComponent {
     super(props);    
   }
 
+  submit = (values) => {
+    console.log(values);
+    if(values){
+      checkInActions.checkinInd(values);
+    }
+};
+
 
 render() {
   const { handleSubmit, reset, t } = this.props;
@@ -37,7 +47,7 @@ render() {
           <div className="card__title">
             <h5 className="bold-text">{t('Add Guest Data')}</h5>
           </div>
-          <form className="form form--horizontal" onSubmit={handleSubmit}>
+          <form className="form form--horizontal" onSubmit={handleSubmit(this.submit)} encType="multipart/form-data">
             <div className="form__form-group">
               <span className="form__form-group-label">Guest Id</span>
               <div className="form__form-group-field">
@@ -271,6 +281,9 @@ render() {
 }
 }
 
-export default reduxForm({
+const IndFormRedux= reduxForm({
   form: 'indian_guest_form', // a unique identifier for this form
 })(translate('common')(IndianGuestForm));
+
+
+export default connect({checkInActions})(IndFormRedux);

@@ -5,7 +5,7 @@ import classnames from 'classnames';
 // import PropTypes from 'prop-types';
 
 // import PropTypes from 'prop-types';
-import IndianGuestForm from './IndianGuestForm';
+import IndFormRedux from './IndianGuestForm';
 import ForeignerGuestForm from './ForeignerGuestForm';
 import submit from './Submit';
 
@@ -64,7 +64,7 @@ class TabsBorderedBottom extends PureComponent {
                 <TabContent activeTab={this.state.activeTab}>
                   <TabPane tabId="1">
                     <Row>
-                      <IndianGuestForm onSubmit={submit} />
+                      <IndFormRedux />
                     </Row>
                   </TabPane>
                   <TabPane tabId="2">

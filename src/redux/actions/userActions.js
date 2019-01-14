@@ -10,9 +10,9 @@ const userActions = {
 
 function login(username, password) {
     console.log("Inside UserAction!!");
-    //  dispatch => {
-    //     console.log("dispatched");
-    //     dispatch(request({ username }));
+     return async(dispatch) => {
+        console.log("dispatched");
+        dispatch(request({ username }));
 
        
 
@@ -20,6 +20,7 @@ function login(username, password) {
             .then(
                 user => { 
                     console.log("USer", user);
+                    dispatch(success(user));
                     switch (user) {
                       case "General manager":
                         console.log("Inside GM");
@@ -40,15 +41,15 @@ function login(username, password) {
                     }
                 },
                 error => {
-                    //dispatch(failure(error));
+                    dispatch(failure(error));
                     alertActions.error(error);
                 }
             );
-    // };
+    };
 
-    // function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    // function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    // function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
